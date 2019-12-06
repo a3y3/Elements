@@ -1,5 +1,13 @@
 <div class="center">
-    ((((This is a placeholder for select!))))
+    <div class="form-group">
+        <select (change)="changeCity($event)" id="city-select" class="form-control">
+            <option value="1">Rochester</option>
+            <option value="2">Somerville</option>
+            <option value="3">Seattle</option>
+            <option value="4">City 14</option>
+            <option value="5">City 17</option>
+        </select>
+    </div>
 </div>
 <app-weather-day *ngFor="let weather of weathers" [weather]="weather">
 </app-weather-day>

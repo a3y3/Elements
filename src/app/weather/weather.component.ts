@@ -11,17 +11,31 @@ export class WeatherComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
+    this.changeCity(null);
+  }
+
+  changeCity($event): void {
+    let city;
+    if (!$event) {
+      city = "Rochester";
+    }
+    else {
+      city = $event.target.value;
+    }
+    this.loadWeather(city);
+  }
+  loadWeather(cityName): void {
     this.weathers = [
       {
-        city: "Salem",
-        date: "12/05/2019",
+        city: cityName,
+        date: "11/05/2019",
         high: 25,
         low: 12,
         windSpeed: 45,
         humidity: 70
       },
       {
-        city: "Worcester",
+        city: cityName,
         date: "12/05/2019",
         high: 25,
         low: 16,
@@ -29,7 +43,7 @@ export class WeatherComponent implements OnInit {
         humidity: 50
       },
       {
-        city: "New York City",
+        city: cityName,
         date: "13/05/2019",
         high: 28,
         low: 10,
@@ -37,7 +51,7 @@ export class WeatherComponent implements OnInit {
         humidity: 60
       },
       {
-        city: "Chicago",
+        city: cityName,
         date: "14/05/2019",
         high: 225,
         low: 126,
@@ -46,5 +60,4 @@ export class WeatherComponent implements OnInit {
       }
     ];
   }
-
 }
