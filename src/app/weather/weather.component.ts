@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Weather } from "../models/Weather";
+import { WeatherFetchService } from "../weather-fetch.service";
+
+
 @Component({
   selector: 'app-weather',
   templateUrl: './weather.component.html',
@@ -8,7 +11,7 @@ import { Weather } from "../models/Weather";
 export class WeatherComponent implements OnInit {
   weathers: Weather[];
 
-  constructor() { }
+  constructor(private weatherFetch:WeatherFetchService) { }
 
   ngOnInit() {
     this.changeCity(null);
@@ -24,40 +27,7 @@ export class WeatherComponent implements OnInit {
     }
     this.loadWeather(city);
   }
-  loadWeather(cityName): void {
-    this.weathers = [
-      {
-        city: cityName,
-        date: "11/05/2019",
-        high: 25,
-        low: 12,
-        windSpeed: 45,
-        humidity: 70
-      },
-      {
-        city: cityName,
-        date: "12/05/2019",
-        high: 25,
-        low: 16,
-        windSpeed: 20,
-        humidity: 50
-      },
-      {
-        city: cityName,
-        date: "13/05/2019",
-        high: 28,
-        low: 10,
-        windSpeed: 12,
-        humidity: 60
-      },
-      {
-        city: cityName,
-        date: "14/05/2019",
-        high: 225,
-        low: 126,
-        windSpeed: 220,
-        humidity: 520
-      }
-    ];
+  loadWeather(cityName: string): void {
+    this.weathers = this.weatherFetch.getWeather(cityName);
   }
 }
