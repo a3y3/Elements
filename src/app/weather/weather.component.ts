@@ -29,7 +29,7 @@ export class WeatherComponent implements OnInit {
         humidity: 50
       },
       {
-        city: "New York Coty",
+        city: "New York City",
         date: "13/05/2019",
         high: 28,
         low: 10,
