@@ -8,8 +8,11 @@ import { WeatherFetchService } from "../weather-fetch.service";
   templateUrl: './weather.component.html',
   styleUrls: ['./weather.component.css']
 })
+
+
 export class WeatherComponent implements OnInit {
   weathers: Weather[];
+  selectedCityName: string = "Rochester";
   locationsMappings: {};
 
   constructor(private weatherFetch: WeatherFetchService) {
@@ -27,18 +30,23 @@ export class WeatherComponent implements OnInit {
   }
 
   changeCity($event): void {
+    const DEFAULT_CITY = "Rochester";
     let locationKey: number;
     if (!$event) {
-      locationKey = this.locationsMappings["Rochester"];
+      locationKey = this.locationsMappings[DEFAULT_CITY];
+      this.selectedCityName = DEFAULT_CITY;
     }
     else {
       locationKey = $event.target.value;
+      this.selectedCityName = $event.target.options[$event.target.options.selectedIndex].text;
     }
     this.loadWeather(locationKey);
   }
+
   loadWeather(cityName: number): void {
     this.weatherFetch.getWeather(cityName).subscribe(data => {
       this.weathers = data.DailyForecasts;
+      console.log(this.weathers);
     });
   }
 }

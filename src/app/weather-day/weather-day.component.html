@@ -1,30 +1,39 @@
 <div class="card">
     <div class="card-body">
-        <div class="card-title center"><b>{{weather.date}}</b></div>
-        <h6 class="card-subtitle mb-2 text-muted center">{{ weather.city }}</h6>
+        <div class="card-title center"><b>{{weather.Date}}</b></div>
+        <h6 class="card-subtitle mb-2 text-muted center">{{ selectedCityName }}</h6>
         <hr>
         <div class="row">
-            <div class="col-3 center">
-                <p>
-                    Light rain
-                </p>
+            <div class="col-4 center">
+                <div>
+                    <p>Day:
+                        <img src="../../assets/images/{{weather.Day.Icon}}.png" alt="">
+                        {{ weather.Day.IconPhrase }}
+                    </p>
+                    <p>
+                        Precipitation Expected: {{ weather.Day.HasPrecipitation }}<br>
+                        Precipitation Intensity: {{ weather.Day.PrecipitationIntensity }}
+                    </p>
+                </div>
             </div>
-            <div class="col-3 center">
+            <div class="col-4 center">
                 <p>
-                    High: {{ weather.high }}°F
+                    High: {{ weather.Temperature.Maximum.Value }}°{{weather.Temperature.Maximum.Unit}}
                     <br>
-                    Low: {{ weather.low }}°F
+                    Low: {{ weather.Temperature.Minimum.Value }}°{{weather.Temperature.Minimum.Unit}}
                 </p>
             </div>
-            <div class="col-3 center">
-                <p>
-                    Wind Speed: {{ weather.windSpeed }} mph
-                </p>
-            </div>
-            <div class="col-3 center">
-                <p>
-                    Humidity: {{ weather.humidity }}%
-                </p>
+            <div class="col-4 center">
+                <div>
+                    <p>Night:
+                        <img src="../../assets/images/{{weather.Night.Icon}}.png" alt="">
+                        {{ weather.Night.IconPhrase }}
+                    </p>
+                    <p>
+                        Precipitation Expected: {{ weather.Night.HasPrecipitation }}<br>
+                        Precipitation Intensity: {{ weather.Night.PrecipitationIntensity }}
+                    </p>
+                </div>
             </div>
         </div>
     </div>
