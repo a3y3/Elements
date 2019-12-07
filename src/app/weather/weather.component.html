@@ -1,11 +1,11 @@
 <div class="center">
     <div class="form-group">
         <select (change)="changeCity($event)" id="city-select" class="form-control">
-            <option value="1">Rochester</option>
-            <option value="2">Somerville</option>
-            <option value="3">Seattle</option>
-            <option value="4">City 14</option>
-            <option value="5">City 17</option>
+            <option value="{{ locationsMappings['Rochester'] }}">Rochester</option>
+            <option value="{{ locationsMappings['Somerville'] }}">Somerville</option>
+            <option value="{{ locationsMappings['Seattle'] }}">Seattle</option>
+            <option value="{{ locationsMappings['San Jose'] }}">San Jose</option>
+            <option value="{{ locationsMappings['Miami'] }}">Miami</option>
         </select>
     </div>
 </div>

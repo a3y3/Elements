@@ -10,24 +10,35 @@ import { WeatherFetchService } from "../weather-fetch.service";
 })
 export class WeatherComponent implements OnInit {
   weathers: Weather[];
+  locationsMappings: {};
 
-  constructor(private weatherFetch:WeatherFetchService) { }
+  constructor(private weatherFetch: WeatherFetchService) {
+    this.locationsMappings = {
+      "Rochester": 329674,
+      'Somerville': 348735,
+      "Seattle": 351409,
+      "San Jose": 347630,
+      "Miami": 347936,
+    };
+  }
 
   ngOnInit() {
     this.changeCity(null);
   }
 
   changeCity($event): void {
-    let city;
+    let locationKey: number;
     if (!$event) {
-      city = "Rochester";
+      locationKey = this.locationsMappings["Rochester"];
     }
     else {
-      city = $event.target.value;
+      locationKey = $event.target.value;
     }
-    this.loadWeather(city);
+    this.loadWeather(locationKey);
   }
-  loadWeather(cityName: string): void {
-    this.weathers = this.weatherFetch.getWeather(cityName);
+  loadWeather(cityName: number): void {
+    this.weatherFetch.getWeather(cityName).subscribe(data => {
+      this.weathers = data.DailyForecasts;
+    });
   }
 }
