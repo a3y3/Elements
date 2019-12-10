@@ -11,8 +11,16 @@
                         {{ weather.Day.IconPhrase }}
                     </p>
                     <p>
-                        Precipitation Expected: {{ weather.Day.HasPrecipitation }}<br>
-                        Precipitation Intensity: {{ weather.Day.PrecipitationIntensity }}
+                        <span *ngIf="weather.Day.HasPrecipitation; else no_precipitation">
+                            Precipitation expected!
+                        </span>
+                        <ng-template #no_precipitation>
+                            No precipitation expected today.
+                        </ng-template>
+                        <br>
+                        <span *ngIf=weather.Day.HasPrecipitation>
+                            Precipitation Intensity: {{ weather.Day.PrecipitationIntensity }}
+                        </span>
                     </p>
                 </div>
             </div>
@@ -30,8 +38,16 @@
                         {{ weather.Night.IconPhrase }}
                     </p>
                     <p>
-                        Precipitation Expected: {{ weather.Night.HasPrecipitation }}<br>
-                        Precipitation Intensity: {{ weather.Night.PrecipitationIntensity }}
+                        <span *ngIf="weather.Night.HasPrecipitation; else no_precipitation_night">
+                            Precipitation expected!
+                        </span>
+                        <ng-template #no_precipitation_night>
+                            No precipitation expected tonight.
+                        </ng-template>
+                        <br>
+                        <span *ngIf=weather.Night.HasPrecipitation>
+                            Precipitation Intensity: {{ weather.Night.PrecipitationIntensity }}
+                        </span>
                     </p>
                 </div>
             </div>
