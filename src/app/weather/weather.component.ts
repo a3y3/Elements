@@ -46,7 +46,6 @@ export class WeatherComponent implements OnInit {
   loadWeather(cityName: number): void {
     this.weatherFetch.getWeather(cityName).subscribe(data => {
       this.weathers = data.DailyForecasts;
-      console.log(this.weathers);
     });
   }
 }
